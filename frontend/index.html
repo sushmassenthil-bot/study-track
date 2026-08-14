@@ -1,0 +1,768 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudyTrack</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">S</div>
+
+            <div>
+                <h1>StudyTrack</h1>
+                <p>Student Management</p>
+            </div>
+        </div>
+
+        <nav class="navigation">
+
+            <button class="nav-item active" data-section="dashboard">
+                <span>📊</span>
+                Dashboard
+            </button>
+
+            <button class="nav-item" data-section="students">
+                <span>👨‍🎓</span>
+                Students
+            </button>
+
+            <button class="nav-item" data-section="courses">
+                <span>📚</span>
+                Courses
+            </button>
+
+            <button class="nav-item" data-section="algorithms">
+                <span>🔎</span>
+                Search & Algorithms
+            </button>
+
+            <button class="nav-item" data-section="advisor">
+                <span>🤖</span>
+                AI Study Advisor
+            </button>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <p>StudyTrack</p>
+            <span>Academic Management System</span>
+        </div>
+
+    </aside>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main-content">
+
+        <!-- HEADER -->
+
+        <header class="topbar">
+
+            <div>
+                <p class="page-label">STUDENT MANAGEMENT</p>
+                <h2 id="page-title">Dashboard</h2>
+            </div>
+
+            <div class="status-indicator">
+                <span class="status-dot"></span>
+                API Connected
+            </div>
+
+        </header>
+
+
+        <!-- =========================
+             DASHBOARD
+        ========================== -->
+
+        <section id="dashboard" class="page-section active">
+
+            <div class="welcome-section">
+
+                <div>
+                    <p class="section-label">WELCOME TO STUDYTRACK</p>
+
+                    <h3>
+                        Manage your students,
+                        <span>track their progress.</span>
+                    </h3>
+
+                    <p class="welcome-text">
+                        A simple student management system with
+                        database management, algorithms and AI-powered
+                        study assistance.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- STAT CARDS -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon students-icon">
+                        👨‍🎓
+                    </div>
+
+                    <div>
+                        <p>Total Students</p>
+                        <h4 id="total-students">0</h4>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon courses-icon">
+                        📚
+                    </div>
+
+                    <div>
+                        <p>Total Courses</p>
+                        <h4 id="total-courses">0</h4>
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon age-icon">
+                        🎓
+                    </div>
+
+                    <div>
+                        <p>Students 21+</p>
+                        <h4 id="students-over-age">0</h4>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- DASHBOARD GRID -->
+
+            <div class="dashboard-grid">
+
+                <div class="panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <p class="section-label">RECENT STUDENTS</p>
+                            <h3>Student Overview</h3>
+                        </div>
+
+                        <button
+                            class="secondary-button"
+                            data-section-target="students">
+                            View All
+                        </button>
+                    </div>
+
+                    <div class="table-wrapper">
+
+                        <table>
+
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Age</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="dashboard-students">
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel report-panel">
+
+                    <div class="panel-header">
+                        <div>
+                            <p class="section-label">STUDENT REPORT</p>
+                            <h3>Academic Overview</h3>
+                        </div>
+                    </div>
+
+                    <div id="dashboard-report" class="report-content">
+                        Loading report...
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             STUDENTS
+        ========================== -->
+
+        <section id="students" class="page-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-label">STUDENT MANAGEMENT</p>
+                    <h3>Students</h3>
+                    <p>View and manage student records.</p>
+                </div>
+
+                <button id="open-student-form" class="primary-button">
+                    + Add Student
+                </button>
+
+            </div>
+
+
+            <!-- ADD STUDENT FORM -->
+
+            <div id="student-form-container" class="form-panel hidden">
+
+                <div class="panel-header">
+
+                    <div>
+                        <p class="section-label">NEW RECORD</p>
+                        <h3>Add Student</h3>
+                    </div>
+
+                    <button
+                        id="close-student-form"
+                        class="close-button">
+                        ×
+                    </button>
+
+                </div>
+
+
+                <form id="student-form">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="student-name">
+                                Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="student-name"
+                                placeholder="Enter student name"
+                                required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="student-email">
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                id="student-email"
+                                placeholder="student@example.com"
+                                required>
+                        </div>
+
+
+                        <div class="form-group">
+                            <label for="student-age">
+                                Age
+                            </label>
+
+                            <input
+                                type="number"
+                                id="student-age"
+                                min="1"
+                                placeholder="Enter age"
+                                required>
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions">
+
+                        <button
+                            type="button"
+                            id="cancel-student-form"
+                            class="secondary-button">
+                            Cancel
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="primary-button">
+                            Add Student
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- STUDENT TABLE -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <p class="section-label">ALL RECORDS</p>
+                        <h3>Student List</h3>
+                    </div>
+
+                    <div class="filter-group">
+
+                        <label for="min-age-filter">
+                            Minimum age
+                        </label>
+
+                        <input
+                            type="number"
+                            id="min-age-filter"
+                            min="1"
+                            placeholder="All">
+
+                        <button
+                            id="apply-age-filter"
+                            class="secondary-button">
+                            Filter
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Age</th>
+                                <th>Actions</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="students-table">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             COURSES
+        ========================== -->
+
+        <section id="courses" class="page-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-label">COURSE MANAGEMENT</p>
+                    <h3>Courses</h3>
+                    <p>Manage courses assigned to students.</p>
+                </div>
+
+                <button
+                    id="open-course-form"
+                    class="primary-button">
+                    + Add Course
+                </button>
+
+            </div>
+
+
+            <!-- COURSE FORM -->
+
+            <div id="course-form-container" class="form-panel hidden">
+
+                <div class="panel-header">
+
+                    <div>
+                        <p class="section-label">NEW RECORD</p>
+                        <h3>Add Course</h3>
+                    </div>
+
+                    <button
+                        id="close-course-form"
+                        class="close-button">
+                        ×
+                    </button>
+
+                </div>
+
+
+                <form id="course-form">
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="course-name">
+                                Course Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="course-name"
+                                placeholder="e.g. International Relations"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="course-credits">
+                                Credits
+                            </label>
+
+                            <input
+                                type="number"
+                                id="course-credits"
+                                min="1"
+                                placeholder="e.g. 3"
+                                required>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="course-student">
+                                Student ID
+                            </label>
+
+                            <input
+                                type="number"
+                                id="course-student"
+                                min="1"
+                                placeholder="Student ID"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="button"
+                            id="cancel-course-form"
+                            class="secondary-button">
+                            Cancel
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="primary-button">
+                            Add Course
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            <!-- COURSE TABLE -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+
+                    <div>
+                        <p class="section-label">ALL RECORDS</p>
+                        <h3>Course List</h3>
+                    </div>
+
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>ID</th>
+                                <th>Course</th>
+                                <th>Credits</th>
+                                <th>Student ID</th>
+                                <th>Actions</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="courses-table">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ALGORITHMS
+        ========================== -->
+
+        <section id="algorithms" class="page-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-label">DATA STRUCTURES & ALGORITHMS</p>
+                    <h3>Search & Algorithms</h3>
+                    <p>
+                        Use sorting and binary search on student records.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="algorithm-grid">
+
+
+                <!-- SORTING -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <p class="section-label">
+                                INSERTION SORT
+                            </p>
+
+                            <h3>Sorted Roster</h3>
+                        </div>
+
+                        <button
+                            id="load-roster"
+                            class="secondary-button">
+                            Sort Students
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="roster-result"
+                        class="algorithm-result">
+                        Click "Sort Students" to view the roster.
+                    </div>
+
+                </div>
+
+
+                <!-- SEARCH -->
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <p class="section-label">
+                                BINARY SEARCH
+                            </p>
+
+                            <h3>Find Student</h3>
+                        </div>
+
+                    </div>
+
+
+                    <form id="search-form" class="search-form">
+
+                        <input
+                            type="text"
+                            id="search-name"
+                            placeholder="Enter exact student name"
+                            required>
+
+                        <button
+                            type="submit"
+                            class="primary-button">
+                            Search
+                        </button>
+
+                    </form>
+
+
+                    <div
+                        id="search-result"
+                        class="algorithm-result">
+                        Search for a student by name.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             AI ADVISOR
+        ========================== -->
+
+        <section id="advisor" class="page-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="section-label">ARTIFICIAL INTELLIGENCE</p>
+
+                    <h3>AI Study Advisor</h3>
+
+                    <p>
+                        Get personalized study advice using Gemini.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="ai-container">
+
+                <div class="ai-intro">
+
+                    <div class="ai-icon">
+                        🤖
+                    </div>
+
+                    <div>
+
+                        <p class="section-label">
+                            GEMINI POWERED
+                        </p>
+
+                        <h3>
+                            What are you struggling with?
+                        </h3>
+
+                        <p>
+                            Tell the AI about your study situation,
+                            and StudyTrack will generate a practical
+                            recommendation.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <form id="ai-form">
+
+                    <div class="form-group">
+
+                        <label for="ai-prompt">
+                            Your study question
+                        </label>
+
+                        <textarea
+                            id="ai-prompt"
+                            rows="6"
+                            placeholder="Example: I have three exams next week and I don't know how to organize my study schedule..."
+                            required></textarea>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="submit"
+                            id="ai-submit"
+                            class="primary-button">
+                            Get Study Advice
+                        </button>
+
+                    </div>
+
+                </form>
+
+
+                <div
+                    id="ai-result"
+                    class="ai-result hidden">
+
+                    <p class="section-label">
+                        AI RECOMMENDATION
+                    </p>
+
+                    <div id="ai-advice"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <!-- =========================
+         NOTIFICATION
+    ========================== -->
+
+    <div id="notification" class="notification hidden">
+        <span id="notification-message"></span>
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
