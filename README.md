@@ -126,3 +126,16 @@ StudyTrack/
 ├── .env.example
 ├── .gitignore
 └── README.md
+
+Quick Feature Verification
+
+After starting the application:
+
+1. Open http://localhost:8000/.
+2. Confirm the seeded roster displays 8 students.
+3. Edit a student's age and click Save Age.
+4. Add a new student using the student form.
+5. Delete a student using the Delete button.
+6. Open Search & Algorithms to test sorting, searching, and the student report.
+7. Open AI Study Advisor to test note summarization and semantic note search.
+8. Confirm the dashboard shows API Connected.
