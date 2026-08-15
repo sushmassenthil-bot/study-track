@@ -31,7 +31,6 @@ Each student contains:
 - Email
 - Age
 
-
 2. Course Management
 
 Users can manage course enrollments through the dashboard.
