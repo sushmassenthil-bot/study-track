@@ -121,13 +121,19 @@ StudyTrack/
 ├── frontend/
 │   ├── index.html
 │   ├── style.css
-│   └── script.js
+│   └── app.js
 │
 ├── .env.example
 ├── .gitignore
 └── README.md
 
 Quick Feature Verification
+
+Backend:
+uvicorn backend.main:app --reload
+
+Frontend:
+serve frontend on port 5500
 
 After starting the application:
 
